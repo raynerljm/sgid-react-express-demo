@@ -11,7 +11,7 @@ export const useAuth = (): UseAuth => {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/api/userinfo')
+    fetch('http://localhost:3000/api/userinfo', { credentials: 'include' })
       .then(async (r) => await r.json())
       .then((data) => {
         setIsLoading(false)
