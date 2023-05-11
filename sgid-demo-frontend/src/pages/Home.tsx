@@ -37,9 +37,12 @@ export const HomePage = (): JSX.Element => {
   const { showBoundary } = useErrorBoundary()
   const handleLoginBtnClick = useCallback(() => {
     setIsLoading(true)
-    fetch(`http://localhost:3000/api/auth-url?icecream=${iceCream}`, {
-      credentials: 'include',
-    })
+    fetch(
+      `${import.meta.env.VITE_BACKEND_URL}/api/auth-url?icecream=${iceCream}`,
+      {
+        credentials: 'include',
+      }
+    )
       .then(async (r) => await r.json())
       .then(({ url }) => {
         window.location.href = url

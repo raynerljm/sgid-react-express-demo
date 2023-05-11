@@ -20,6 +20,8 @@ This is a demo app that integrates [sgID](https://www.id.gov.sg/) with React as 
 2. Setup the frontend
    - Enter the frontend folder using `cd sgid-demo-frontend`
    - Run `npm install`
+   - Copy the `.env.example` file and rename it as `.env`
+     - Fill in `BACKEND_URL` as `http://localhost:3000`
 3. Setup the backend
    - Enter the backend folder using `cd sgid-demo-backend`
    - Run `npm install`
@@ -28,6 +30,7 @@ This is a demo app that integrates [sgID](https://www.id.gov.sg/) with React as 
      - Copy the value of `id` into `SGID_CLIENT_ID`
      - Copy the value of `secret` into `SGID_CLIENT_SECRET`
      - Copy the value of `privateKey` into `SGID_PRIVATE_KEY`
+     - Fill in `FRONTEND_URL` as `http://localhost:5173`
 
 ## Running the app
 

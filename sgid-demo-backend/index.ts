@@ -22,7 +22,11 @@ const sgidClient = new SgidClient({
 const app: Express = express();
 
 app.use(
-  cors({ origin: "http://localhost:5173", credentials: true, methods: "GET" })
+  cors({
+    origin: String(process.env.FRONTEND_URL),
+    credentials: true,
+    methods: "GET",
+  })
 );
 app.use(cookieParser());
 
@@ -85,7 +89,7 @@ app.get("/api/callback", async (req, res) => {
   // Store the access token in memory
   const newMemoryObject = { ...memoryObject, accessToken };
   store.set(sessionId, newMemoryObject);
-  res.redirect("http://localhost:5173/logged-in");
+  res.redirect(`${String(process.env.FRONTEND_URL)}/logged-in`);
 });
 
 app.get("/api/userinfo", async (req, res) => {
