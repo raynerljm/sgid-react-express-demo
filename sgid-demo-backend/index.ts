@@ -52,8 +52,7 @@ app.get("/api/auth-url", (req, res) => {
   );
 
   // Set the session ID in the browser's cookies
-  res.cookie("sessionId", sessionId);
-  res.cookie("sessionId", sessionId, { domain: "localhost:5173" });
+  res.cookie("sessionId", sessionId, { httpOnly: true });
 
   // Return the authorization URL (i.e. QR code page)
   res.json({ url });
@@ -113,6 +112,14 @@ app.get("/api/userinfo", async (req, res) => {
 
   // Return the user data
   res.json({ ...data, data: { ...data.data, iceCream: state } });
+});
+
+app.get("/api/logout", async (req, res) => {
+  // Retrieve the session ID from the browser's cookies
+  const { sessionId } = req.cookies;
+  store.delete(sessionId);
+  res.clearCookie("sessionId");
+  res.json({ message: "Logged out" });
 });
 
 app.listen(3000, () => {
